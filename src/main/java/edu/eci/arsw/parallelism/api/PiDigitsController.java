@@ -3,10 +3,12 @@ package edu.eci.arsw.parallelism.api;
 
 import edu.eci.arsw.parallelism.core.PiDigitsService;
 import jakarta.validation.constraints.Min;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/pi")
+@Validated
 public class PiDigitsController {
 
     private final PiDigitsService service;

@@ -1,0 +1,12 @@
+-------------------------------------------------------------------------------
+Test set: edu.eci.arsw.parallelism.core.PiDigitsServiceTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.022 s <<< FAILURE! -- in edu.eci.arsw.parallelism.core.PiDigitsServiceTest
+edu.eci.arsw.parallelism.core.PiDigitsServiceTest.testCalculateSequentialZeroCount -- Time elapsed: 0.005 s <<< ERROR!
+java.lang.IllegalArgumentException: count must be > 0
+	at edu.eci.arsw.parallelism.core.PiDigitsService.calculateSequential(PiDigitsService.java:14)
+	at edu.eci.arsw.parallelism.core.PiDigitsServiceTest.testCalculateSequentialZeroCount(PiDigitsServiceTest.java:20)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
