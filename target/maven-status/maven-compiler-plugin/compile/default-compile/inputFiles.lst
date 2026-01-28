@@ -1,5 +1,6 @@
-/home/karol/Documentos/ARSw/Lab 1 arsw/Lab_1_Paralelism-ARSW/src/main/java/edu/eci/arsw/parallelism/ParallelismApplication.java
-/home/karol/Documentos/ARSw/Lab 1 arsw/Lab_1_Paralelism-ARSW/src/main/java/edu/eci/arsw/parallelism/api/PiDigitsController.java
-/home/karol/Documentos/ARSw/Lab 1 arsw/Lab_1_Paralelism-ARSW/src/main/java/edu/eci/arsw/parallelism/api/PiResponse.java
-/home/karol/Documentos/ARSw/Lab 1 arsw/Lab_1_Paralelism-ARSW/src/main/java/edu/eci/arsw/parallelism/core/PiDigits.java
-/home/karol/Documentos/ARSw/Lab 1 arsw/Lab_1_Paralelism-ARSW/src/main/java/edu/eci/arsw/parallelism/core/PiDigitsService.java
+D:\Users\david\Documentos\SeptimoSemestre\ARSW\Laboratorios\Lab_1_Paralelism-ARSW\src\main\java\edu\eci\arsw\parallelism\api\GlobalExceptionHandler.java
+D:\Users\david\Documentos\SeptimoSemestre\ARSW\Laboratorios\Lab_1_Paralelism-ARSW\src\main\java\edu\eci\arsw\parallelism\api\PiDigitsController.java
+D:\Users\david\Documentos\SeptimoSemestre\ARSW\Laboratorios\Lab_1_Paralelism-ARSW\src\main\java\edu\eci\arsw\parallelism\api\PiResponse.java
+D:\Users\david\Documentos\SeptimoSemestre\ARSW\Laboratorios\Lab_1_Paralelism-ARSW\src\main\java\edu\eci\arsw\parallelism\core\PiDigits.java
+D:\Users\david\Documentos\SeptimoSemestre\ARSW\Laboratorios\Lab_1_Paralelism-ARSW\src\main\java\edu\eci\arsw\parallelism\core\PiDigitsService.java
+D:\Users\david\Documentos\SeptimoSemestre\ARSW\Laboratorios\Lab_1_Paralelism-ARSW\src\main\java\edu\eci\arsw\parallelism\ParallelismApplication.java
