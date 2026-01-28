@@ -1,5 +1,0 @@
-# Created at 2026-01-28T16:30:21.430
-Boot Manifest-JAR contains absolute paths in classpath 'D:\Users\david\Documentos\SeptimoSemestre\ARSW\Laboratorios\Lab_1_Paralelism-ARSW\target\test-classes'
-Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
-'other' has different root
-

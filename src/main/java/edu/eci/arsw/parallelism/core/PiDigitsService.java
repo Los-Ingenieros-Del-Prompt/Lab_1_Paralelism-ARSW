@@ -10,8 +10,11 @@ public class PiDigitsService {
         if (start < 0) {
             throw new IllegalArgumentException("start must be >= 0");
         }
-        if (count <= 0) {
-            throw new IllegalArgumentException("count must be > 0");
+        if (count < 0) {
+            throw new IllegalArgumentException("count must be >= 0");
+        }
+        if (count == 0) {
+            return "";
         }
         return PiDigits.getDigitsHex(start, count);
     }
