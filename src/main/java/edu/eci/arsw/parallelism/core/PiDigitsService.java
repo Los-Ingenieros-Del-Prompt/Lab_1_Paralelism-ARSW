@@ -1,6 +1,7 @@
 
 package edu.eci.arsw.parallelism.core;
 
+import jakarta.validation.constraints.Min;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,5 +18,9 @@ public class PiDigitsService {
             return "";
         }
         return PiDigits.getDigitsHex(start, count);
+    }
+
+    public String calculateWithThreads(@Min(0) int start, @Min(1) int count, int numThreads) {
+        return "hola";
     }
 }
