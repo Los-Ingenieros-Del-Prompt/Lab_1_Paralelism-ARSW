@@ -1,8 +1,8 @@
-C:\Users\johan\Lab_1_Paralelism-ARSW\src\main\java\edu\eci\arsw\parallelism\api\GlobalExceptionHandler.java
-C:\Users\johan\Lab_1_Paralelism-ARSW\src\main\java\edu\eci\arsw\parallelism\api\PiDigitsController.java
-C:\Users\johan\Lab_1_Paralelism-ARSW\src\main\java\edu\eci\arsw\parallelism\api\PiResponse.java
-C:\Users\johan\Lab_1_Paralelism-ARSW\src\main\java\edu\eci\arsw\parallelism\concurrency\ParallelStrategy.java
-C:\Users\johan\Lab_1_Paralelism-ARSW\src\main\java\edu\eci\arsw\parallelism\concurrency\ThreadJoinStrategy.java
-C:\Users\johan\Lab_1_Paralelism-ARSW\src\main\java\edu\eci\arsw\parallelism\core\PiDigits.java
-C:\Users\johan\Lab_1_Paralelism-ARSW\src\main\java\edu\eci\arsw\parallelism\core\PiDigitsService.java
-C:\Users\johan\Lab_1_Paralelism-ARSW\src\main\java\edu\eci\arsw\parallelism\ParallelismApplication.java
+D:\Users\david\Documentos\SeptimoSemestre\ARSW\Laboratorios\Lab_1_Paralelism-ARSW\src\main\java\edu\eci\arsw\parallelism\api\GlobalExceptionHandler.java
+D:\Users\david\Documentos\SeptimoSemestre\ARSW\Laboratorios\Lab_1_Paralelism-ARSW\src\main\java\edu\eci\arsw\parallelism\api\PiDigitsController.java
+D:\Users\david\Documentos\SeptimoSemestre\ARSW\Laboratorios\Lab_1_Paralelism-ARSW\src\main\java\edu\eci\arsw\parallelism\api\PiResponse.java
+D:\Users\david\Documentos\SeptimoSemestre\ARSW\Laboratorios\Lab_1_Paralelism-ARSW\src\main\java\edu\eci\arsw\parallelism\concurrency\ParallelStrategy.java
+D:\Users\david\Documentos\SeptimoSemestre\ARSW\Laboratorios\Lab_1_Paralelism-ARSW\src\main\java\edu\eci\arsw\parallelism\concurrency\ThreadJoinStrategy.java
+D:\Users\david\Documentos\SeptimoSemestre\ARSW\Laboratorios\Lab_1_Paralelism-ARSW\src\main\java\edu\eci\arsw\parallelism\core\PiDigits.java
+D:\Users\david\Documentos\SeptimoSemestre\ARSW\Laboratorios\Lab_1_Paralelism-ARSW\src\main\java\edu\eci\arsw\parallelism\core\PiDigitsService.java
+D:\Users\david\Documentos\SeptimoSemestre\ARSW\Laboratorios\Lab_1_Paralelism-ARSW\src\main\java\edu\eci\arsw\parallelism\ParallelismApplication.java
