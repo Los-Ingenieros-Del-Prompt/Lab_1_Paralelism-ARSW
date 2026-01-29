@@ -1,6 +1,6 @@
-/home/juan/Documents/Projects/Lab_1_Paralelism-ARSW/src/main/java/edu/eci/arsw/parallelism/ParallelismApplication.java
-/home/juan/Documents/Projects/Lab_1_Paralelism-ARSW/src/main/java/edu/eci/arsw/parallelism/api/GlobalExceptionHandler.java
-/home/juan/Documents/Projects/Lab_1_Paralelism-ARSW/src/main/java/edu/eci/arsw/parallelism/api/PiDigitsController.java
-/home/juan/Documents/Projects/Lab_1_Paralelism-ARSW/src/main/java/edu/eci/arsw/parallelism/api/PiResponse.java
-/home/juan/Documents/Projects/Lab_1_Paralelism-ARSW/src/main/java/edu/eci/arsw/parallelism/core/PiDigits.java
-/home/juan/Documents/Projects/Lab_1_Paralelism-ARSW/src/main/java/edu/eci/arsw/parallelism/core/PiDigitsService.java
+C:\Users\johan\Lab_1_Paralelism-ARSW\src\main\java\edu\eci\arsw\parallelism\api\GlobalExceptionHandler.java
+C:\Users\johan\Lab_1_Paralelism-ARSW\src\main\java\edu\eci\arsw\parallelism\api\PiDigitsController.java
+C:\Users\johan\Lab_1_Paralelism-ARSW\src\main\java\edu\eci\arsw\parallelism\api\PiResponse.java
+C:\Users\johan\Lab_1_Paralelism-ARSW\src\main\java\edu\eci\arsw\parallelism\core\PiDigits.java
+C:\Users\johan\Lab_1_Paralelism-ARSW\src\main\java\edu\eci\arsw\parallelism\core\PiDigitsService.java
+C:\Users\johan\Lab_1_Paralelism-ARSW\src\main\java\edu\eci\arsw\parallelism\ParallelismApplication.java

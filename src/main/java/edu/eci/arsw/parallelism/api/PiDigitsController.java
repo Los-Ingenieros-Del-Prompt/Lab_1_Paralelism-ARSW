@@ -54,21 +54,35 @@ public class PiDigitsController {
     })
     @GetMapping("/digits")
     public PiResponse digits(
-            @Parameter(
-                    description = "Starting position (0-based) for the π digits",
-                    example = "0"
-            )
+
+            @Parameter(description = "Starting position (0-based)", example = "0")
             @RequestParam @Min(0) int start,
 
-            @Parameter(
-                    description = "Number of digits to calculate",
-                    example = "10"
-            )
-            @RequestParam @Min(1) int count
-    )
+            @Parameter(description = "Number of digits to calculate", example = "10")
+            @RequestParam @Min(1) int count,
 
-    {
-        String digits = service.calculateSequential(start, count);
+            @Parameter(description = "Number of threads to use", example = "4")
+            @RequestParam(required = false) @Min(1) Integer threads,
+
+            @Parameter(
+                    description = "Execution strategy: sequential or threads",
+                    example = "threads"
+            )
+            @RequestParam(required = false, defaultValue = "sequential") String strategy
+    ) {
+
+        String digits;
+
+        if ("threads".equalsIgnoreCase(strategy)) {
+            int numThreads = (threads != null)
+                    ? threads
+                    : Runtime.getRuntime().availableProcessors();
+
+            digits = service.calculateWithThreads(start, count, numThreads);
+        } else {
+            digits = service.calculateSequential(start, count);
+        }
+
         return new PiResponse(start, count, digits);
     }
 }
