@@ -1,6 +1,8 @@
 
 package edu.eci.arsw.parallelism.core;
 
+import org.springframework.context.annotation.Bean;
+
 /**
  * Bailey–Borwein–Plouffe (BBP) formula implementation to compute hexadecimal
  * digits of Pi.

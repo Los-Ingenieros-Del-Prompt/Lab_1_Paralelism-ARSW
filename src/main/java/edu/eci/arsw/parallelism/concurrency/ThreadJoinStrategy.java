@@ -1,18 +1,13 @@
 package edu.eci.arsw.parallelism.concurrency;
 
 import edu.eci.arsw.parallelism.core.PiDigits;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
+@Component
 public class ThreadJoinStrategy implements ParallelStrategy {
-
-    private final PiDigits piCalculator;
-
-    public ThreadJoinStrategy(PiDigits piCalculator) {
-        this.piCalculator = piCalculator;
-    }
 
     @Override
     public String calculate(int start, int count, int threads) {
@@ -33,8 +28,9 @@ public class ThreadJoinStrategy implements ParallelStrategy {
             int index = i;
 
             Thread thread = new Thread(() -> {
+                // MISMA lógica que el secuencial
                 partialResults[index] =
-                        Arrays.toString(piCalculator.getDigits(segmentStart, segmentSize));
+                        PiDigits.getDigitsHex(segmentStart, segmentSize);
             });
 
             threadList.add(thread);
