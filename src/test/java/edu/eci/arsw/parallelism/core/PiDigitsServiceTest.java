@@ -1,11 +1,16 @@
 package edu.eci.arsw.parallelism.core;
 
+import edu.eci.arsw.parallelism.concurrency.ParallelStrategy;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class PiDigitsServiceTest {
 
-    private final PiDigitsService service = new PiDigitsService();
+    private final PiDigitsService service =
+            new PiDigitsService(List.of());
 
     @Test
     void testCalculateSequential() {

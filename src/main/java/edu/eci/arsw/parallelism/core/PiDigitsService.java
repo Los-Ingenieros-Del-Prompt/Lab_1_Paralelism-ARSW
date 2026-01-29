@@ -1,11 +1,18 @@
-
 package edu.eci.arsw.parallelism.core;
 
-import jakarta.validation.constraints.Min;
+import edu.eci.arsw.parallelism.concurrency.ParallelStrategy;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class PiDigitsService {
+
+    private final List<ParallelStrategy> strategies;
+
+    public PiDigitsService(List<ParallelStrategy> strategies) {
+        this.strategies = strategies;
+    }
 
     public String calculateSequential(int start, int count) {
         if (start < 0) {
@@ -20,7 +27,36 @@ public class PiDigitsService {
         return PiDigits.getDigitsHex(start, count);
     }
 
-    public String calculateWithThreads(@Min(0) int start, @Min(1) int count, int numThreads) {
-        return "hola";
+    public String calculate(
+            int start,
+            int count,
+            Integer threads,
+            String strategyName
+    ) {
+
+        if (strategyName == null || strategyName.equalsIgnoreCase("sequential")) {
+            return calculateSequential(start, count);
+        }
+
+        ParallelStrategy strategy = strategies.stream()
+                .filter(s -> s.name().equalsIgnoreCase(strategyName))
+                .findFirst()
+                .orElseThrow(() ->
+                        new IllegalArgumentException("Unknown strategy: " + strategyName));
+
+        return calculateThreads(start, count, threads, strategy);
+    }
+
+    public String calculateThreads(
+            int start,
+            int count,
+            Integer threads,
+            ParallelStrategy strategy
+    ) {
+        int threadCount = (threads == null || threads <= 0)
+                ? Runtime.getRuntime().availableProcessors()
+                : threads;
+
+        return strategy.calculate(start, count, threadCount);
     }
 }
