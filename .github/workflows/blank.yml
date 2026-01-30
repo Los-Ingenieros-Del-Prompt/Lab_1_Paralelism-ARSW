@@ -1,4 +1,4 @@
-name: Backend CI/CD - RIDECI (Java 17 + Railway)
+name: CI/CD
 
 on:
   push:
