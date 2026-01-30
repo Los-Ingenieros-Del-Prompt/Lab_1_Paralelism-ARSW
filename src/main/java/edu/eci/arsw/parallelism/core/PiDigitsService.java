@@ -2,7 +2,7 @@ package edu.eci.arsw.parallelism.core;
 
 import edu.eci.arsw.parallelism.concurrency.ParallelStrategy;
 import org.springframework.stereotype.Service;
-
+import edu.eci.arsw.parallelism.monitoring.PiExecutionResult;
 import java.util.List;
 
 @Service
@@ -59,4 +59,29 @@ public class PiDigitsService {
 
         return strategy.calculate(start, count, threadCount);
     }
+
+
+    public PiExecutionResult calculateWithTiming(int start, int count, Integer threads, String strategyName) {
+
+        long startTime = System.nanoTime();
+
+        String result = calculate(start, count, threads, strategyName);
+
+        long endTime = System.nanoTime();
+
+        double timeMillis = (endTime - startTime) / 1_000_000.0;
+
+        String usedStrategy = (strategyName == null || strategyName.equalsIgnoreCase("sequential"))
+                ? "sequential"
+                : strategyName;
+
+        int usedThreads = usedStrategy.equals("sequential")
+                ? 1
+                : ((threads == null || threads <= 0)
+                        ? Runtime.getRuntime().availableProcessors()
+                        : threads);
+
+        return new PiExecutionResult(result, usedStrategy, usedThreads, timeMillis);
+    }
+
 }
