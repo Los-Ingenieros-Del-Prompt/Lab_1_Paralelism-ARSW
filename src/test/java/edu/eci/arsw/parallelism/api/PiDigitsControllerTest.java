@@ -1,4 +1,3 @@
-
 package edu.eci.arsw.parallelism.api;
 
 import org.junit.jupiter.api.Test;
@@ -22,8 +21,8 @@ class PiDigitsControllerTest {
     @Test
     void shouldReturnDigits() throws Exception {
         mockMvc.perform(get("/api/v1/pi/digits")
-                .param("start", "0")
-                .param("count", "5"))
+                        .param("start", "0")
+                        .param("count", "5"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.start").value(0))
                 .andExpect(jsonPath("$.count").value(5))
@@ -33,8 +32,8 @@ class PiDigitsControllerTest {
     @Test
     void shouldReturnDigitsZeroCount() throws Exception {
         mockMvc.perform(get("/api/v1/pi/digits")
-                .param("start", "0")
-                .param("count", "1"))
+                        .param("start", "0")
+                        .param("count", "1"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.start").value(0))
                 .andExpect(jsonPath("$.count").value(1))
@@ -44,16 +43,98 @@ class PiDigitsControllerTest {
     @Test
     void shouldReturnBadRequestForNegativeStart() throws Exception {
         mockMvc.perform(get("/api/v1/pi/digits")
-                .param("start", "-1")
-                .param("count", "5"))
+                        .param("start", "-1")
+                        .param("count", "5"))
                 .andExpect(status().isBadRequest());
     }
 
     @Test
     void shouldReturnBadRequestForNegativeCount() throws Exception {
         mockMvc.perform(get("/api/v1/pi/digits")
-                .param("start", "0")
-                .param("count", "-1"))
+                        .param("start", "0")
+                        .param("count", "-1"))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void shouldReturnDigitsWithThreadsParameter() throws Exception {
+        mockMvc.perform(get("/api/v1/pi/digits")
+                        .param("start", "0")
+                        .param("count", "10")
+                        .param("threads", "4"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.start").value(0))
+                .andExpect(jsonPath("$.count").value(10))
+                .andExpect(jsonPath("$.digits").exists());
+    }
+
+    @Test
+    void shouldReturnDigitsWithSequentialStrategy() throws Exception {
+        mockMvc.perform(get("/api/v1/pi/digits")
+                        .param("start", "0")
+                        .param("count", "5")
+                        .param("strategy", "sequential"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.start").value(0))
+                .andExpect(jsonPath("$.count").value(5))
+                .andExpect(jsonPath("$.digits").value("243F6"));
+    }
+
+    @Test
+    void shouldReturnDigitsWithThreadsStrategy() throws Exception {
+        mockMvc.perform(get("/api/v1/pi/digits")
+                        .param("start", "0")
+                        .param("count", "5")
+                        .param("strategy", "threads")
+                        .param("threads", "2"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.start").value(0))
+                .andExpect(jsonPath("$.count").value(5))
+                .andExpect(jsonPath("$.digits").value("243F6"));
+    }
+
+    @Test
+    void shouldReturnBadRequestForNegativeThreads() throws Exception {
+        mockMvc.perform(get("/api/v1/pi/digits")
+                        .param("start", "0")
+                        .param("count", "5")
+                        .param("threads", "-1"))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void shouldReturnDigitsWithDifferentStart() throws Exception {
+        mockMvc.perform(get("/api/v1/pi/digits")
+                        .param("start", "10")
+                        .param("count", "5"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.start").value(10))
+                .andExpect(jsonPath("$.count").value(5))
+                .andExpect(jsonPath("$.digits").exists());
+    }
+
+    @Test
+    void shouldReturnDigitsWithLargeCount() throws Exception {
+        mockMvc.perform(get("/api/v1/pi/digits")
+                        .param("start", "0")
+                        .param("count", "100"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.start").value(0))
+                .andExpect(jsonPath("$.count").value(100))
+                .andExpect(jsonPath("$.digits").exists());
+    }
+
+    @Test
+    void shouldReturnBadRequestForMissingStart() throws Exception {
+        mockMvc.perform(get("/api/v1/pi/digits")
+                        .param("count", "5"))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void shouldReturnBadRequestForMissingCount() throws Exception {
+        mockMvc.perform(get("/api/v1/pi/digits")
+                        .param("start", "0"))
                 .andExpect(status().isBadRequest());
     }
 }
