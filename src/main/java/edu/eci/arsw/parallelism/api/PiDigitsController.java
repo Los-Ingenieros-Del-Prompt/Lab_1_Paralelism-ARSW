@@ -106,10 +106,22 @@ public class PiDigitsController {
     @GetMapping("/digits/measure")
     public PiExecutionResult measure(
 
+            @Parameter(description = "Starting position (0-based)", example = "0")
             @RequestParam @Min(0) int start,
+
+            @Parameter(description = "Number of digits to calculate", example = "10")
             @RequestParam @Min(1) int count,
+
+            @Parameter(description = "Number of threads to use", example = "4")
             @RequestParam(required = false) @Min(0) Integer threads,
+
+
+            @Parameter(
+                    description = "Execution strategy: sequential or threads",
+                    example = "threads"
+            )
             @RequestParam(required = false) String strategy
+
     ) {
         return service.calculateWithTiming(start, count, threads, strategy);
     }

@@ -71,13 +71,15 @@ public class PiDigitsService {
 
         double timeMillis = (endTime - startTime) / 1_000_000.0;
 
-        int usedThreads = (threads == null || threads <= 0)
-                ? Runtime.getRuntime().availableProcessors()
-                : threads;
-
-        String usedStrategy = (strategyName == null)
+        String usedStrategy = (strategyName == null || strategyName.equalsIgnoreCase("sequential"))
                 ? "sequential"
                 : strategyName;
+
+        int usedThreads = usedStrategy.equals("sequential")
+                ? 1
+                : ((threads == null || threads <= 0)
+                        ? Runtime.getRuntime().availableProcessors()
+                        : threads);
 
         return new PiExecutionResult(result, usedStrategy, usedThreads, timeMillis);
     }
