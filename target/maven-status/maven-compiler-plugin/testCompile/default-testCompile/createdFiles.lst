@@ -1,6 +1,0 @@
-edu\eci\arsw\parallelism\core\PiDigitsServiceTest.class
-edu\eci\arsw\parallelism\integration\PiDigitsIntegrationTest.class
-edu\eci\arsw\parallelism\concurrency\ThreadJoinStrategyTest.class
-edu\eci\arsw\parallelism\api\GlobalExceptionHandlerTest.class
-edu\eci\arsw\parallelism\api\PiDigitsControllerTest.class
-edu\eci\arsw\parallelism\core\PiDigitsTest.class

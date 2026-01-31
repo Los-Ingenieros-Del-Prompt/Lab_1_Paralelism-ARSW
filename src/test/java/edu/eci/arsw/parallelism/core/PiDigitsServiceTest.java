@@ -1,6 +1,7 @@
 package edu.eci.arsw.parallelism.core;
 
 import edu.eci.arsw.parallelism.concurrency.ParallelStrategy;
+import edu.eci.arsw.parallelism.monitoring.PerformanceMonitor;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Timeout;
@@ -15,12 +16,14 @@ class PiDigitsServiceTest {
 
     private PiDigitsService service;
     private ParallelStrategy mockStrategy;
+    private PerformanceMonitor performanceMonitor;
 
     @BeforeEach
     void setUp() {
         mockStrategy = mock(ParallelStrategy.class);
         when(mockStrategy.name()).thenReturn("threads");
-        service = new PiDigitsService(List.of(mockStrategy));
+        performanceMonitor = new PerformanceMonitor();
+        service = new PiDigitsService(List.of(mockStrategy), performanceMonitor);
     }
 
     @Test
@@ -146,7 +149,8 @@ class PiDigitsServiceTest {
     @Timeout(value = 10, unit = TimeUnit.SECONDS)
     void testSequentialVsParallelEquivalence() {
         PiDigitsService realService = new PiDigitsService(
-                List.of(new edu.eci.arsw.parallelism.concurrency.ThreadJoinStrategy())
+                List.of(new edu.eci.arsw.parallelism.concurrency.ThreadJoinStrategy()),
+                new PerformanceMonitor()
         );
 
         String sequential = realService.calculate(0, 20, null, "sequential");
@@ -159,7 +163,8 @@ class PiDigitsServiceTest {
     @Timeout(value = 10, unit = TimeUnit.SECONDS)
     void testDeterminismMultipleRuns() {
         PiDigitsService realService = new PiDigitsService(
-                List.of(new edu.eci.arsw.parallelism.concurrency.ThreadJoinStrategy())
+                List.of(new edu.eci.arsw.parallelism.concurrency.ThreadJoinStrategy()),
+                new PerformanceMonitor()
         );
 
         String result1 = realService.calculate(0, 30, 4, "threads");
@@ -168,5 +173,53 @@ class PiDigitsServiceTest {
 
         assertEquals(result1, result2, "Results should be deterministic");
         assertEquals(result2, result3, "Results should be deterministic");
+    }
+
+    @Test
+    void testCalculateWithTimingSequential() {
+        var result = service.calculateWithTiming(0, 5, null, "sequential");
+        
+        assertNotNull(result);
+        assertEquals("sequential", result.strategy());
+        assertEquals(1, result.threads());
+        assertEquals(5, result.digits().length());
+        assertTrue(result.timeMillis() >= 0);
+    }
+
+    @Test
+    void testCalculateWithTimingSequentialWithNullStrategy() {
+        var result = service.calculateWithTiming(0, 5, null, null);
+        
+        assertNotNull(result);
+        assertEquals("sequential", result.strategy());
+        assertEquals(1, result.threads());
+        assertEquals(5, result.digits().length());
+        assertTrue(result.timeMillis() >= 0);
+    }
+
+    @Test
+    void testCalculateWithTimingParallel() {
+        when(mockStrategy.calculate(0, 5, 4)).thenReturn("243F6");
+        
+        var result = service.calculateWithTiming(0, 5, 4, "threads");
+        
+        assertNotNull(result);
+        assertEquals("threads", result.strategy());
+        assertEquals(4, result.threads());
+        assertEquals("243F6", result.digits());
+        assertTrue(result.timeMillis() >= 0);
+    }
+
+    @Test
+    void testCalculateWithTimingParallelDefaultThreads() {
+        int expectedThreads = Runtime.getRuntime().availableProcessors();
+        when(mockStrategy.calculate(eq(0), eq(5), eq(expectedThreads))).thenReturn("243F6");
+        
+        var result = service.calculateWithTiming(0, 5, null, "threads");
+        
+        assertNotNull(result);
+        assertEquals("threads", result.strategy());
+        assertEquals(expectedThreads, result.threads());
+        assertTrue(result.timeMillis() >= 0);
     }
 }
