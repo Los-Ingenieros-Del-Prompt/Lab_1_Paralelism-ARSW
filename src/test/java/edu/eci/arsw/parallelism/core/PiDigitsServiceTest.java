@@ -1,6 +1,7 @@
 package edu.eci.arsw.parallelism.core;
 
 import edu.eci.arsw.parallelism.concurrency.ParallelStrategy;
+import edu.eci.arsw.parallelism.monitoring.PerformanceMonitor;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Timeout;
@@ -15,12 +16,14 @@ class PiDigitsServiceTest {
 
     private PiDigitsService service;
     private ParallelStrategy mockStrategy;
+    private PerformanceMonitor performanceMonitor;
 
     @BeforeEach
     void setUp() {
         mockStrategy = mock(ParallelStrategy.class);
         when(mockStrategy.name()).thenReturn("threads");
-        service = new PiDigitsService(List.of(mockStrategy));
+        performanceMonitor = new PerformanceMonitor();
+        service = new PiDigitsService(List.of(mockStrategy), performanceMonitor);
     }
 
     @Test
@@ -146,7 +149,8 @@ class PiDigitsServiceTest {
     @Timeout(value = 10, unit = TimeUnit.SECONDS)
     void testSequentialVsParallelEquivalence() {
         PiDigitsService realService = new PiDigitsService(
-                List.of(new edu.eci.arsw.parallelism.concurrency.ThreadJoinStrategy())
+                List.of(new edu.eci.arsw.parallelism.concurrency.ThreadJoinStrategy()),
+                new PerformanceMonitor()
         );
 
         String sequential = realService.calculate(0, 20, null, "sequential");
@@ -159,7 +163,8 @@ class PiDigitsServiceTest {
     @Timeout(value = 10, unit = TimeUnit.SECONDS)
     void testDeterminismMultipleRuns() {
         PiDigitsService realService = new PiDigitsService(
-                List.of(new edu.eci.arsw.parallelism.concurrency.ThreadJoinStrategy())
+                List.of(new edu.eci.arsw.parallelism.concurrency.ThreadJoinStrategy()),
+                new PerformanceMonitor()
         );
 
         String result1 = realService.calculate(0, 30, 4, "threads");

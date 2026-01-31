@@ -83,8 +83,7 @@ src/main/java/edu/eci/arsw/parallelism/
 │   └── ThreadJoinStrategy.java    # Thread-based implementation
 │
 ├── monitoring/                    # Performance measurement
-│   ├── ExecutionTimer.java        # Execution timer
-│   ├── TimedResult.java           # Timed result
+│   ├── PerformanceMonitor         # Executes a Pi calculation and measures its execution time.
 │   └── PiExecutionResult.java     # Pi-specific result
 │
 └── ParallelismApplication.java    # Spring Boot main application
@@ -144,10 +143,10 @@ http://localhost:8080/swagger-ui.html
 Calculates and returns hexadecimal digits of π.
 
 **Parameters:**
-- | `start` | int | Yes | Starting position (0-based) | `0` |
-- | `count` | int | Yes | Number of digits | `10` |
-- | `threads` | int | No | Number of threads (parallel) | `4` |
-- | `strategy` | string | No | Strategy: `sequential` or `threads` | `threads` |
+- | `start` | int | Yes | Starting position (0-based)
+- | `count` | int | Yes | Number of digits
+- | `threads` | int | No | Number of threads (parallel) 
+- | `strategy` | string | No | Strategy: `sequential` or `threads` 
 
 **Request Example:**
 ```bash

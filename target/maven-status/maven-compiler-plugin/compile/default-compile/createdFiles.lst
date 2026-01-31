@@ -1,8 +1,7 @@
-edu/eci/arsw/parallelism/monitoring/TimedResult.class
 edu/eci/arsw/parallelism/core/PiDigits.class
 edu/eci/arsw/parallelism/api/PiResponse.class
 edu/eci/arsw/parallelism/api/PiDigitsController.class
-edu/eci/arsw/parallelism/monitoring/ExecutionTimer.class
+edu/eci/arsw/parallelism/monitoring/PerformanceMonitor.class
 edu/eci/arsw/parallelism/api/GlobalExceptionHandler.class
 edu/eci/arsw/parallelism/concurrency/ParallelStrategy.class
 edu/eci/arsw/parallelism/concurrency/ThreadJoinStrategy.class
